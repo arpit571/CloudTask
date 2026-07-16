@@ -1,30 +1,31 @@
 version: "3.9"
 
 services:
-
   backend:
     build: ./server
     container_name: cloudtask-backend
-
     ports:
       - "5000:5000"
-
     env_file:
       - ./server/.env
-
     depends_on:
       - mongo
 
   mongo:
     image: mongo:8
-
     container_name: cloudtask-db
-
     ports:
       - "27017:27017"
-
     volumes:
       - mongo-data:/data/db
+
+  frontend:
+    build: ./client
+    container_name: cloudtask-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
 
 volumes:
   mongo-data:

@@ -15,13 +15,21 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("CloudTask Backend Running 🚀");
+    res.json({
+        project: "CloudTask",
+        version: "1.0.0",
+        status: "Running"
+    });
 });
 
 app.get("/api/health", (req, res) => {
-    res.json({
-        status: "Healthy"
-    });
+  res.status(200).json({
+    status: "UP",
+    application: "CloudTask",
+    database: "Connected",
+    docker: true,
+    timestamp: new Date(),
+  });
 });
 
 app.use("/api/tasks", taskRoutes);
