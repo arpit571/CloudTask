@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const API =
-   "https://cloudtask-backend-c5ny.onrender.com/api/tasks";
+  import.meta.env.VITE_API_URL ||
+  "https://cloudtask-backend-c5ny.onrender.com/api/tasks";
 
 function App() {
   const [tasks, setTasks] = useState([]);
